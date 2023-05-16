@@ -1,6 +1,7 @@
 @{
     Layout = "_Layout";
 }
+@using AnimalShelter.Models
 
 @model AnimalShelter.Models.Animal
 
@@ -13,7 +14,9 @@
     <br>
 
     @Html.LabelFor(model => model.Type)
-    @Html.TextBoxFor(model => model.Type)
+    @Html.DropDownListFor(model => model.Type, 
+                new SelectList(Enum.GetValues(typeof(AnimalType))),
+                "Select Type")
 
     <br>
 
