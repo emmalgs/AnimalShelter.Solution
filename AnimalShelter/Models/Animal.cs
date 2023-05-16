@@ -9,7 +9,7 @@ namespace AnimalShelter.Models
         public string Type { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public int AnimalId { get; set; }
     }
 }

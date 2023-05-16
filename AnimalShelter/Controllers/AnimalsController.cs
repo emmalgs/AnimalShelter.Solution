@@ -36,10 +36,10 @@ namespace AnimalShelter.Controllers
             return RedirectToAction("Index");
         }
 
-        // public ActionResult Details(int id)
-        // {
-        //     Animal selectedAnimal = _db.Animals.FirstOrDefault(animal => animal.AnimalId == id);
-        //     return View(selectedAnimal);
-        // }
+        public ActionResult Details(int id)
+        {
+            Animal selectedAnimal = _db.Animals.FirstOrDefault(animal => animal.AnimalId == id);
+            return View(selectedAnimal);
+        }
     }
 }
