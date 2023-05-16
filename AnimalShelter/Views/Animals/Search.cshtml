@@ -1,0 +1,21 @@
+@{
+    Layout = "_Layout";
+}
+
+@using AnimalShelter.Models
+@model AnimalShelter.Models.Animal
+
+<h2> Search for an animal type~</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Type)
+    @Html.DropDownListFor(model => model.Type,
+new SelectList(Enum.GetValues(typeof(AnimalType))),
+"Select Type")
+
+
+<br>
+    <input type="submit" value="Find m'Animals!" />
+}
+

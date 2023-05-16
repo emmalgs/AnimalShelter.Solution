@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using AnimalShelter.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Globalization;
-using System;
 
 namespace AnimalShelter.Controllers
 {
@@ -12,7 +10,7 @@ namespace AnimalShelter.Controllers
         private readonly AnimalShelterContext _db;
 
         public AnimalsController(AnimalShelterContext db)
-        {
+        { 
             _db = db;
         }
 
@@ -30,7 +28,6 @@ namespace AnimalShelter.Controllers
         [HttpPost]
         public ActionResult Create(Animal animal)
         {
-            // animal.Date = DateTime.Now;
             _db.Animals.Add(animal);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -40,6 +37,23 @@ namespace AnimalShelter.Controllers
         {
             Animal selectedAnimal = _db.Animals.FirstOrDefault(animal => animal.AnimalId == id);
             return View(selectedAnimal);
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        public ActionResult Results(List<Animal> searchList)
+        {
+            return View(searchList);
+        }
+
+        [HttpPost] 
+        public ActionResult Search(int type)
+        {   
+            List<Animal> searchList = _db.Animals.Where(animal => (int) animal.Type == type).ToList();
+            return View("Results", searchList); 
         }
     }
 }
